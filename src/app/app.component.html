@@ -1,0 +1,56 @@
+
+<nb-layout>
+
+ 
+  <nb-layout-column>
+      <div>
+        <h3 style="text-align: center;">{{ title }}</h3>
+        <h5>Language Table</h5>
+        <table>
+          <thead>
+            <tr>
+              <th>S.No</th>&nbsp;
+              <th>Language Code</th>&nbsp;
+              <th>Language Name</th>&nbsp;
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor= "let data of lanData; let i=index" >
+            <td>{{i+1}}</td>&nbsp;
+            <td>{{data.languageCode}}</td>&nbsp;
+            <td>{{data.languageName}}</td>&nbsp;
+            <td>
+           <button (click)="onAdd( editDialog, data)">Edit</button>
+           <ng-template #editDialog let-data let-ref="dialogRef">
+           <nb-card>
+             <nb-card-header>Edit Data</nb-card-header>
+             <nb-card-body>
+               <form [formGroup]="editForm">
+                 <label for="languageCode">Language Code
+                   <input nbInput id="languageCode" type="text" formControlName="languageCode">
+                 </label>
+                 <br>
+                 <br>
+                 <label for="languageName">Language Name
+                   <input nbInput id="languageName" type="text" formControlName="languageName">
+                 </label>
+                 <br>
+                 <hr>
+                 <br>
+               <button (click)="ref.close()">Close</button>&nbsp;
+               <button type="reset">Reset</button>
+               </form>
+            </nb-card-body>
+            </nb-card>
+           </ng-template>
+
+          </tbody>
+        </table>
+     </div>
+     <br>
+     <br>
+     <br>
+
+  </nb-layout-column>
+</nb-layout>
